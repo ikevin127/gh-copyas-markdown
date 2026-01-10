@@ -1,4 +1,4 @@
-# GitHub Copy as Markdown
+# GitHub - Copy as Markdown Chrome Extension
 
 <img src="1280-gh-copyas-markdown-visual.png" alt="GitHub - Copy as Markdown Visual" width="640"/>
 
