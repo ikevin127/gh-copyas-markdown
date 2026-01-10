@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub - Copy as Markdown",
+  "description": "Adds a 'Copy as markdown' button to every GitHub comment, issue, and pull request.",
+  "version": "2026.1",
+  "icons": {
+    "16": "github-copyas-markdown.png",
+    "32": "github-copyas-markdown.png",
+    "48": "github-copyas-markdown.png",
+    "128": "github-copyas-markdown.png"
+  },
+  "permissions": [
+    "clipboardWrite"
+  ],
+  "action": {
+    "default_title": "GitHub - Copy as Markdown",
+    "default_icon": {
+      "16": "github-copyas-markdown.png",
+      "32": "github-copyas-markdown.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["github-copyas-markdown.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["turndown.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
