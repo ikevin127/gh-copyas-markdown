@@ -99,9 +99,12 @@ function handleIssueMenu(menuList) {
         e.preventDefault();
         e.stopPropagation();
         
-        const triggerBtn = document.querySelector('button[aria-expanded="true"]');
+        // Must have aria-haspopup to exclude sub-issues expand/collapse toggle
+        const triggerBtn = document.querySelector('button[aria-expanded="true"][aria-haspopup="true"]');
         if (triggerBtn) {
-            const bodyElement = findClosestCommentBody(triggerBtn);
+            // First try DOM traversal (reliable for React issue viewer with sub-issues)
+            // Fall back to geometry-based approach for legacy pages
+            const bodyElement = findCommentBodyFromNode(triggerBtn) || findClosestCommentBody(triggerBtn);
             performCopy(bodyElement, menuList);
         } else {
             alert("Could not locate the active menu button.");
@@ -184,9 +187,16 @@ function findClosestCommentBody(triggerBtn) {
 }
 
 function findCommentBodyFromNode(node) {
-    const container = node.closest('.js-comment-container, .TimelineItem, .ReviewComment, .Box, .timeline-comment');
-    if(!container) return null;
-    return container.querySelector('.markdown-body, .comment-body');
+    // Support both legacy GitHub DOM and new React-based issue viewer
+    const container = node.closest(
+        // Legacy selectors (keep all original ones!)
+        '.js-comment-container, .TimelineItem, .ReviewComment, .Box, .timeline-comment, ' +
+        // React issue viewer selectors
+        '.react-issue-comment, [data-testid="issue-body"], ' +
+        '[class*="IssueCommentViewer-module"], [class*="IssueBodyViewer-module"]'
+    );
+    if (!container) return null;
+    return container.querySelector('[data-testid="markdown-body"], .markdown-body, .comment-body');
 }
 
 async function performCopy(bodyElement, menuToClose) {
