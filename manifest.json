@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "GitHub - Copy as Markdown",
   "description": "Adds a 'Copy as markdown' button to every GitHub comment, issue, and pull request.",
-  "version": "2026.2",
+  "version": "2026.3",
   "icons": {
     "16": "github-copyas-markdown.png",
     "32": "github-copyas-markdown.png",
