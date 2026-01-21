@@ -33,6 +33,12 @@ Whether you are moving a discussion to a new ticket, quoting a comment in a diff
 - `activeTab` / Host Permissions: Required to detect GitHub pages and insert the button.
 - **No Tracking:** This extension runs entirely locally in your browser. No data is sent to any external server.
 
+## Version 2026.3
+- Fix: Handle sub-issues section when copying markdown from issue comments
+
+## Version 2026.2
+- Fix: Exclude 'Copy as markdown' button from "<> Code" dropdown on PRs
+
 ## Version 2026.1
 - Initial release with support for Issues and PRs.
 - Advanced DOM detection for React-based views.
